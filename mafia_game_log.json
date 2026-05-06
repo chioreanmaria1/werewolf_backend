@@ -1,0 +1,98 @@
+{
+  "num_players": 6,
+  "steps": [
+    {
+      "step": 0,
+      "player_id": 1,
+      "observation": "\n[GAME] Welcome to Secret Mafia! You are Player 1.\nYour role: Mafia\nTeam: Mafia\nDescription: A Mafia member. Eliminate villagers and gain majority.\n\nPlayers: Player 0, Player 1, Player 2, Player 3, Player 4, Player 5\n\nYour teammates are: Player 1, Player 5.\n\nDuring DAY phase: Speak freely and vote.\nDuring NIGHT phase: '[Player X]' to vote and eliminate a villager.\nWin by eliminating villagers until Mafia equal or outnumber them.\n\n[GAME] Night has fallen. Mafia, agree on a victim.\nValid targets: [0], [2], [3], [4]",
+      "action": "[Player 0]",
+      "step_info": {},
+      "alive_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "step": 1,
+      "player_id": 5,
+      "observation": "\n[GAME] Welcome to Secret Mafia! You are Player 5.\nYour role: Mafia\nTeam: Mafia\nDescription: A Mafia member. Eliminate villagers and gain majority.\n\nPlayers: Player 0, Player 1, Player 2, Player 3, Player 4, Player 5\n\nYour teammates are: Player 1, Player 5.\n\nDuring DAY phase: Speak freely and vote.\nDuring NIGHT phase: '[Player X]' to vote and eliminate a villager.\nWin by eliminating villagers until Mafia equal or outnumber them.\n\n[GAME] Night has fallen. Mafia, agree on a victim.\nValid targets: [0], [2], [3], [4]\n[Player 1] ",
+      "action": "[Player 1] to vote and eliminate [3].",
+      "step_info": {},
+      "alive_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "step": 2,
+      "player_id": 3,
+      "observation": "\n[GAME] Welcome to Secret Mafia! You are Player 3.\nYour role: Doctor\nTeam: Village\nDescription: Protect one player each night from Mafia elimination.\n\nPlayers: Player 0, Player 1, Player 2, Player 3, Player 4, Player 5\n\nDuring DAY phase: Speak freely and vote.\nDuring NIGHT phase: '[Player X]' to protect a player.\nWin by identifying and eliminating all Mafia members.\n\n[GAME] Night phase - choose one player to protect: [0], [1], [2], [4], [5]",
+      "action": "Let's analyze the Night phase carefully. We need to choose a player to protect from the Mafia. Recall the current mafia status:\n\n- [0] = Helper (assumed)\n- [1] = Shadow\n- [2] = Chain\n- [3] = Leader (potential Mafia)\n- [4] = Drifter\n- [5] = Public\n\nWe cannot protect [2] or [3] because they are Mafia players. We need to choose one of the others.\n\nIf we protect **Player 0** (Helper), the remaining are:\n- [1]\n- [2]\n- [4]\n- [5]\n\nPlayer 2 is suspected mafia, but if we protect [0], we must secure other key players too. \n\nI recommend protecting **Player 4 (Drifter)**. He is a wild card, and protecting him may help us identify the Mafias more easily.\n\n**Action:** I will protect Player 4.\n\n---\n\n**Game Instructions Check:**\n- During NIGHT phase, choose [4] to protect.\n- Ensure you maintain a strong line of communication with other players.\n- Keep voting and speaking freely during the DAY phase to gather clues.\n\n**Next steps:** Let's proceed with protecting Player 4 at night!",
+      "step_info": {},
+      "alive_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "step": 3,
+      "player_id": 4,
+      "observation": "\n[GAME] Welcome to Secret Mafia! You are Player 4.\nYour role: Detective\nTeam: Village\nDescription: Investigate players to find Mafia members.\n\nPlayers: Player 0, Player 1, Player 2, Player 3, Player 4, Player 5\n\nDuring DAY phase: Speak freely and vote.\nDuring NIGHT phase: '[Player X]' to investigate.\nYou'll learn immediately if the target is Mafia.\nWin by identifying and eliminating all Mafia members.\n\n[GAME] Night phase - choose one player to investigate: [0], [1], [2], [3], [5]",
+      "action": "The Detective investigates Player 1. \n\n\\boxed{1}",
+      "step_info": {},
+      "alive_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    }
+  ],
+  "rewards": null,
+  "game_info": {
+    "0": {
+      "role": "Villager",
+      "invalid_move": false,
+      "turn_count": 0
+    },
+    "1": {
+      "role": "Mafia",
+      "invalid_move": false,
+      "turn_count": 0
+    },
+    "2": {
+      "role": "Villager",
+      "invalid_move": false,
+      "turn_count": 0
+    },
+    "3": {
+      "role": "Doctor",
+      "invalid_move": false,
+      "turn_count": 0
+    },
+    "4": {
+      "role": "Detective",
+      "invalid_move": false,
+      "turn_count": 0
+    },
+    "5": {
+      "role": "Mafia",
+      "invalid_move": false,
+      "turn_count": 0
+    }
+  }
+}
