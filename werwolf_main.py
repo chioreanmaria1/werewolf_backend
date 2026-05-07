@@ -53,19 +53,31 @@ def run_streamed_game():
         step += 1
 
     rewards, game_info = env.close() # Get final rewards and game info after the game is done
+    
+
+    winner_ids = [player_id for player_id, reward in rewards.items() if reward > 0]
+    
+    # Determine the winning team based on the first winner's role
+    if len(winner_ids) > 0 and env.player_roles[winner_ids[0]] == "Mafia":
+        winners = "Mafia"
+    else:
+        winners = "Villagers"
+
     game_log = {
         "num_players": len(agents),
         "steps": logs,
         "rewards": rewards,
-        "game_info": game_info
+        "game_info": game_info,
+        "winners": winners
     }
 
-    with open("mafia_game_log.json", "w") as f:
+    with open("mafia_game_log1.json", "w") as f:
         json.dump(game_log, f, indent=2)
 
     yield { # Final game summary to the UI
         "type": "final",
         "rewards": rewards,
         "game_info": game_info,
-        "logs": logs
+        "logs": logs,
+        "winners": winners
     }
