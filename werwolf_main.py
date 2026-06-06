@@ -1,20 +1,27 @@
 import os
-from openrouterTextAgent import OpenRouterTextArenaAgent
-import textarena as ta
 import json
-
-os.environ['OPENROUTER_API_KEY'] = "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"
+import textarena as ta
+from rotating_client import RotatingOpenAIClient
+from rotating_agent import RotatingOpenAIAgent
+import time
 
 def run_streamed_game():
     logs = []
 
-    # Initialize agents
+    api_keys = [
+        "bc315679fc9b7675265b194d420449a0",
+        "de905758b4bf5da0bc26ec7555c2cd92",
+    ]
+
+    openai_client = RotatingOpenAIClient(
+        api_keys=api_keys,
+        base_url="https://chat-ai.academiccloud.de/v1", 
+        model="llama-3.3-70b-instruct",             
+    )
+
     agents = {
-        i: OpenRouterTextArenaAgent(
-            model_name="openrouter/free",
-            temperature=0.8
-        )
-        for i in range(6) # Hier anpassen für mehr Spieler
+        i: RotatingOpenAIAgent(client=openai_client)
+        for i in range(6)
     }
 
     # Initialize the environment
@@ -71,7 +78,10 @@ def run_streamed_game():
         "winners": winners
     }
 
-    with open("mafia_game_log1.json", "w") as f:
+    timestamp = int(time.time())
+    filename = f"mafia_game_log_{timestamp}.json"
+
+    with open(filename, "w", encoding="utf-8") as f:
         json.dump(game_log, f, indent=2)
 
     yield { # Final game summary to the UI

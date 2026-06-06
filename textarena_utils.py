@@ -21,7 +21,10 @@ def build_agent_prompt(observation: str) -> str:
     if "Voting phase" in order:
         order = "You MUST vote. You MUST NOT discuss. You MUST NOT explain. You MUST NOT output anything except a valid bracketed number."
     elif "Discuss" in order:
-        order = "You MUST discuss. Think privately. Output ONLY your public statement. Do NOT reveal hidden reasoning."
+        order = """You MUST discuss. Think privately. Output ONLY your public statement. Do NOT reveal hidden reasoning. Do NOT reveal your role. DO it only if you are a DETECTIVE and you have information to share. Otherwise, output NOTHING. 
+        If you are a MAFIA, you can share false information, but do NOT reveal your role. If you are a VILLAGER, you can share true information, but do NOT reveal your role. In either case, DO NOT reveal your role or private reasoning.
+        Special roles like DOCTOR OR DETECTIVE exist, but YOU have to decide if they are trustworthy or not based on the information you have. You can choose to share information or stay silent, but you MUST NOT reveal your role or private reasoning.
+        """
     else:
         order = "You MUST perform your role action. Output ONLY one valid bracketed number. Do NOT explain."
     return f"{observation}\n\n{order}"
